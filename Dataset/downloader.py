@@ -13,7 +13,10 @@ with open(image_file,"r") as file:
         line = [item for item in line.split(" ") if item]
         img_url = line[2]
         img_name = img_dir + line[1] + ".jpg"
-        try:
-            urllib.request.urlretrieve(img_url,img_name)
-        except Exception:
+        if not os.path.exists(img_name):
+            try:
+                urllib.request.urlretrieve(img_url,img_name)
+            except Exception:
+                pass
+        else:
             pass
